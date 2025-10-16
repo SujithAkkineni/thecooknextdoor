@@ -1,0 +1,83 @@
+<div class="dashboard-container">
+  <!-- Header -->
+  <header class="dashboard-header">
+    <div class="header-left">
+      <h1>Admin Dashboard</h1>
+      <p>Welcome back, {{ currentAdmin?.username }}</p>
+    </div>
+    <button class="logout-btn" (click)="logout()">Logout</button>
+  </header>
+
+  <!-- Navigation -->
+  <nav class="dashboard-nav">
+    <button class="nav-btn active">Dashboard</button>
+    <button class="nav-btn" (click)="navigateTo('orders')">Orders</button>
+    <button class="nav-btn" (click)="navigateTo('products')">Products</button>
+    <button class="nav-btn" (click)="navigateTo('customers')">Customers</button>
+  </nav>
+
+  <!-- Stats Cards -->
+  <div class="stats-grid" *ngIf="stats && !loading">
+    <div class="stat-card">
+      <div class="stat-icon orders">
+        <i class="fas fa-shopping-cart"></i>
+      </div>
+      <div class="stat-info">
+        <h3>{{ stats.totalOrders }}</h3>
+        <p>Total Orders</p>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon pending">
+        <i class="fas fa-clock"></i>
+      </div>
+      <div class="stat-info">
+        <h3>{{ stats.pendingOrders }}</h3>
+        <p>Pending Orders</p>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon completed">
+        <i class="fas fa-check-circle"></i>
+      </div>
+      <div class="stat-info">
+        <h3>{{ stats.completedOrders }}</h3>
+        <p>Completed Orders</p>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon revenue">
+        <i class="fas fa-dollar-sign"></i>
+      </div>
+      <div class="stat-info">
+        <h3>${{ stats.totalRevenue }}</h3>
+        <p>Total Revenue</p>
+      </div>
+    </div>
+
+    <div class="stat-card">
+      <div class="stat-icon products">
+        <i class="fas fa-utensils"></i>
+      </div>
+      <div class="stat-info">
+        <h3>{{ stats.totalFoods }}</h3>
+        <p>Total Products</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Loading State -->
+  <div class="loading" *ngIf="loading">
+    <div class="spinner"></div>
+    <p>Loading dashboard data...</p>
+  </div>
+
+  <!-- Error State -->
+  <div class="error" *ngIf="!stats && !loading">
+    <p>Failed to load dashboard data. Please try again.</p>
+    <button class="retry-btn" (click)="loadDashboardStats()">Retry</button>
+  </div>
+</div>

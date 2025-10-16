@@ -27,7 +27,12 @@ interface Order {
 export class ApiService {
   private apiUrl = 'http://localhost:5000/api';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    // Use environment variable for production
+    if (typeof window !== 'undefined') {
+      this.apiUrl = (window as any)['ENV']?.API_URL || 'http://localhost:5000/api';
+    }
+  }
 
   // Get all foods
   getFoods(): Observable<any[]> {

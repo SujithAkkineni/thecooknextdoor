@@ -3,11 +3,11 @@ import { Router } from '@angular/router';
 import { ApiService } from '../../services/api.service';
 
 @Component({
-  selector: 'app-order-list',
+  selector: 'app-food-items',
   templateUrl: './order-list.component.html',
   styleUrls: ['./order-list.component.css']
 })
-export class OrderListComponent implements OnInit {
+export class FoodItemsComponent implements OnInit {
   foods: any[] | null = null;
   selectedFood: any = null;
 

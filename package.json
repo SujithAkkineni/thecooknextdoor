@@ -1,0 +1,19 @@
+{
+  "name": "thecooknextdoor",
+  "version": "1.0.0",
+  "description": "Full-stack food delivery application",
+  "main": "src/src/server.js",
+  "scripts": {
+    "build": "cd src/src/frontend && npm install && npm run build",
+    "start": "cd src/src && npm install && npm start",
+    "dev": "concurrently \"cd src/src/frontend && npm start\" \"cd src/src && npm run dev\"",
+    "postinstall": "npm run build"
+  },
+  "keywords": ["food-delivery", "angular", "nodejs", "express"],
+  "author": "",
+  "license": "ISC",
+  "engines": {
+    "node": "18.x",
+    "npm": "9.x"
+  }
+}

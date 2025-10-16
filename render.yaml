@@ -1,0 +1,26 @@
+services:
+  # Backend Service
+  - type: web
+    name: cook-next-door-backend
+    env: node
+    rootDir: src/src
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGODB_URI
+        generateValue: true
+      - key: JWT_SECRET
+        generateValue: true
+
+  # Frontend Service (Static Site)
+  - type: web
+    name: cook-next-door-frontend
+    env: static
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist/frontend
+    envVars:
+      - key: API_URL
+        value: https://cook-next-door-backend.onrender.com

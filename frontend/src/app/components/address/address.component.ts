@@ -52,6 +52,6 @@ export class AddressComponent implements OnInit {
   }
 
   goBack(): void {
-    this.router.navigate(['/order']);
+    this.router.navigate(['/foods']);
   }
 }

@@ -8,14 +8,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AddressComponent } from './components/address/address.component';
 import { PaymentComponent } from './components/payment/payment.component';
-import { OrderListComponent } from './components/order-list/order-list.component';
+import { FoodItemsComponent } from './components/order-list/order-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AddressComponent,
     PaymentComponent,
-    OrderListComponent
+    FoodItemsComponent
   ],
   imports: [
     BrowserModule,
