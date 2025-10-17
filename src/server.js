@@ -31,14 +31,30 @@ app.get('/api/health', (req, res) => {
   res.json({ status: 'OK', message: 'API is running' });
 });
 
-// Connect to MongoDB
-mongoose.connect(process.env.MONGODB_URI)
-  .then(() => {
-    console.log('Connected to MongoDB');
-    app.listen(PORT, () => {
-      console.log(`Server running on port ${PORT}`);
+// Connect to MongoDB (with fallback for local development)
+const mongoURI = process.env.MONGODB_URI || 'mongodb://localhost:27017/cooknextdoor';
+
+if (process.env.MONGODB_URI) {
+  mongoose.connect(process.env.MONGODB_URI)
+    .then(() => {
+      console.log('Connected to MongoDB');
+      startServer();
+    })
+    .catch((error) => {
+      console.error('MongoDB connection error:', error);
+      console.log('Starting server without MongoDB connection...');
+      startServer();
     });
-  })
-  .catch((error) => {
-    console.error('MongoDB connection error:', error);
+} else {
+  console.log('No MongoDB URI provided - starting server in development mode');
+  startServer();
+}
+
+function startServer() {
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+    if (!process.env.MONGODB_URI) {
+      console.log('Note: Server is running without database connection');
+    }
   });
+}
