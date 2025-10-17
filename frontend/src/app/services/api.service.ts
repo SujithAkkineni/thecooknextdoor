@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
 interface Food {
   _id?: string;
@@ -25,12 +26,12 @@ interface Order {
   providedIn: 'root'
 })
 export class ApiService {
-  private apiUrl = 'http://localhost:5000/api';
+  private apiUrl = environment.apiUrl;
 
   constructor(private http: HttpClient) {
-    // Use environment variable for production
-    if (typeof window !== 'undefined') {
-      this.apiUrl = (window as any)['ENV']?.API_URL || 'http://localhost:5000/api';
+    // Use environment variable override if available (for Render deployment)
+    if (typeof window !== 'undefined' && (window as any)['ENV']?.API_URL) {
+      this.apiUrl = (window as any)['ENV'].API_URL;
     }
   }
 
