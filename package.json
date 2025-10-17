@@ -2,7 +2,7 @@
   "name": "thecooknextdoor",
   "version": "1.0.0",
   "description": "Full-stack food delivery application",
-  "main": "src/server.js",
+  "main": "server.js",
   "scripts": {
     "build": "cd frontend && npm install && npx ng build --configuration production",
     "start": "cd src && npm start",
