@@ -1,11 +1,10 @@
 services:
-  # Backend Service
+  # Combined Backend + Frontend Service
   - type: web
-    name: cook-next-door-backend
+    name: cook-next-door-app
     env: node
-    rootDir: src
-    buildCommand: npm install
-    startCommand: npm start
+    buildCommand: npm install && npm run build
+    startCommand: npm run start:combined
     envVars:
       - key: NODE_ENV
         value: production
@@ -13,14 +12,3 @@ services:
         generateValue: true
       - key: JWT_SECRET
         generateValue: true
-
-  # Frontend Service (Static Site)
-  - type: web
-    name: cook-next-door-frontend
-    env: static
-    rootDir: frontend
-    buildCommand: npm install && npm run build
-    staticPublishPath: dist/frontend
-    envVars:
-      - key: API_URL
-        value: https://cook-next-door-backend.onrender.com

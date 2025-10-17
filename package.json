@@ -6,6 +6,7 @@
   "scripts": {
     "build": "cd frontend && npm install && npx @angular/cli build --configuration production",
     "start": "cd src && npm start",
+    "start:combined": "node src/server.js",
     "dev": "concurrently \"cd frontend && npm start\" \"cd src && npm run dev\"",
     "postinstall": "echo 'Build will be handled by Render'"
   },
