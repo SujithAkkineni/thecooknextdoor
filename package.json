@@ -4,7 +4,7 @@
   "description": "Full-stack food delivery application",
   "main": "server.js",
   "scripts": {
-    "build": "cd frontend && npm install && chmod +x ./node_modules/.bin/ng && ./node_modules/.bin/ng build --configuration production",
+    "build": "cd frontend && npm install && npx @angular/cli build --configuration production",
     "start": "cd src && npm start",
     "dev": "concurrently \"cd frontend && npm start\" \"cd src && npm run dev\"",
     "postinstall": "echo 'Build will be handled by Render'"
